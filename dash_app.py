@@ -33,9 +33,38 @@ html, body, [class*="css"] {
     color: #e2e8f0;
 }
 
+/* Ajustes globales y agresivos de contraste para TODO el texto de la barra lateral */
 [data-testid="stSidebar"] {
     background: linear-gradient(180deg, #0f1117 0%, #161b22 100%) !important;
     border-right: 1px solid rgba(31,111,235,0.2);
+}
+
+/* Forzar color blanco/claro en textos estáticos, etiquetas y marcas de la barra lateral */
+[data-testid="stSidebar"] p, 
+[data-testid="stSidebar"] span, 
+[data-testid="stSidebar"] label, 
+[data-testid="stSidebar"] .stMarkdown {
+    color: #e6edf3 !important;
+}
+
+/* NUEVA REGLA: Forzar color celeste en el texto de BOTONES y SELECTORES dentro de la barra lateral */
+[data-testid="stSidebar"] button p,
+[data-testid="stSidebar"] a p,
+[data-testid="stSidebar"] div[data-baseweb="select"] * {
+    color: #58a6ff !important;
+    font-weight: 600 !important;
+}
+
+/* Asegurar que los subtítulos o textos secundarios de los componentes conserven buena lectura */
+[data-testid="stSidebar"] .stMarkdown p,
+[data-testid="stSidebar"] caption {
+    color: #8b949e !important;
+}
+
+/* Títulos de los Expander en la barra lateral */
+[data-testid="stSidebar"] details summary span p {
+    color: #58a6ff !important;
+    font-weight: 600;
 }
 
 /* Hero header médico */
@@ -259,7 +288,7 @@ with st.sidebar:
     st.markdown("---")
     
     # Información médica en sidebar
-    with st.expander("🏥 Información Clínica", expanded=True):
+    with st.expander("🏥 Información Clinical", expanded=True):
         st.markdown("""
         ### 🩺 El Cáncer de Piel
         
@@ -275,7 +304,7 @@ with st.sidebar:
         - Consultas tardías al especialista
         """)
     
-    with st.expander("ℹ️ Sobre el Dashboard"):
+    with st.expander("ℹ️ Sobre el Dashboard", expanded=False):
         st.markdown("""
         **Pregunta de investigación:**
         > ¿Cuál es la eficacia de los modelos predictivos de IA para la detección temprana del cáncer de piel en hombres?
@@ -288,6 +317,9 @@ with st.sidebar:
         
         **Fuente:** Scopus (2015-2025)
         """)
+        st.markdown("---")
+        # Botón del repositorio reubicado aquí adentro
+        st.link_button("📁 Repositorio", "https://github.com/juliocastrolimas16-boop/dashboard.scopus", use_container_width=True)
     
     st.markdown("---")
     st.caption("🔬 Datos: Scopus · UPCH · Grupo 4 · Prevención Oncológica")
@@ -781,4 +813,4 @@ st.markdown("""
 """, unsafe_allow_html=True)
 
 # Mensaje de éxito
-st.success("🏥 Dashboard actualizado - Análisis en tiempo real para la prevención del cáncer de piel", icon="🎉")
+st.success("🏥 Estilos de componentes ajustados - Contraste optimizado correctamente", icon="🎉")
